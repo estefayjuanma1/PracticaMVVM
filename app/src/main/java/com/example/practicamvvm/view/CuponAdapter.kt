@@ -1,14 +1,13 @@
 package com.example.practicamvvm.view
-
-
-import Cupon
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicamvvm.R
 import com.example.practicamvvm.BR
+import com.example.practicamvvm.model.server.Cupon
 import com.example.practicamvvm.viewmodel.MainViewModel
 
 class CuponAdapter(var mainViewModel: MainViewModel) :
@@ -41,7 +40,8 @@ class CuponAdapter(var mainViewModel: MainViewModel) :
         return R.layout.cupon_list_item
     }
 
-    class CuponViewHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root){
+    class CuponViewHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root),
+    View.OnClickListener{
 
         private var binding: ViewDataBinding?= null
 
@@ -52,6 +52,9 @@ class CuponAdapter(var mainViewModel: MainViewModel) :
         fun setCupon(mainViewModel: MainViewModel, position: Int) {
             binding?.setVariable(BR.model, mainViewModel)
             binding?.setVariable(BR.position, position)
+            binding?.executePendingBindings()
         }
+
+        override fun onClick(v: View?) {}
     }
 }

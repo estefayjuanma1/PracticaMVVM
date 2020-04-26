@@ -1,8 +1,9 @@
 package com.example.practicamvvm.model
 
-import Cupon
+
 import androidx.databinding.BaseObservable
 import androidx.lifecycle.MutableLiveData
+import com.example.practicamvvm.model.server.Cupon
 
 
 class MainObservable: BaseObservable() {

@@ -1,3 +1,4 @@
+package com.example.practicamvvm.model.server
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 

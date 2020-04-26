@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieDB2020</string>
+    <string name="app_name">PracticaMVVM</string>
     <string name="API_KEY">ff29f617b45b36aab5aa78a6fa04677f</string>
     <string name="title">Movie Title</string>
     <string name="release_date_lb">Release date:</string>

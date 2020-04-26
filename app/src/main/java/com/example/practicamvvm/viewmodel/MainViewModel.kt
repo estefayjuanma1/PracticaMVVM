@@ -1,11 +1,12 @@
 package com.example.practicamvvm.viewmodel
 
-import Cupon
+
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.practicamvvm.model.MainObservable
+import com.example.practicamvvm.model.server.Cupon
 import com.example.practicamvvm.view.CuponAdapter
 import com.squareup.picasso.Picasso
 
@@ -13,6 +14,7 @@ class MainViewModel  : ViewModel(){
     private var mainObservable: MainObservable =
         MainObservable()
     private var cuponAdapter: CuponAdapter ? = null
+    private var cuponSelected : MutableLiveData<Cupon> = MutableLiveData()
 
     fun callCupones(){
         mainObservable.callCupones()
@@ -36,11 +38,22 @@ class MainViewModel  : ViewModel(){
         var cupon: List<Cupon>? = mainObservable.getCupones().value
         return cupon?.get(position)
     }
+
+    fun getCuponSelected() : MutableLiveData<Cupon>{
+        return cuponSelected
+    }
+
+    fun onItemClick(position: Int){
+        val cupon = getCuponesAt(position)
+        cuponSelected.value = cupon
+
+    }
     companion object{
         @JvmStatic
-        @BindingAdapter("loadimage")
+        @BindingAdapter("loadImage")
         fun loadimage(imageView: ImageView, imageURL: String){
-            Picasso.get().load(imageURL)
+            if(!imageURL.isNullOrBlank())
+                Picasso.get().load(imageURL).into(imageView)
         }
     }
 }

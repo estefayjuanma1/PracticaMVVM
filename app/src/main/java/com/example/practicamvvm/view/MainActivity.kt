@@ -1,5 +1,6 @@
 package com.example.practicamvvm.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,9 +37,19 @@ class MainActivity : AppCompatActivity() {
     fun setUpListUpdate(){
         mainViewModel?.callCupones()
 
-        mainViewModel?.getCupones()?.observe(this, Observer {
-            Log.d("Cupon", it[0].title)
-            mainViewModel?.setCuponesInCuponesAdapter(it)
+        mainViewModel?.getCupones()?.observe(this, Observer {cupon ->
+            Log.d("Cupon", cupon[0].title)
+            mainViewModel?.setCuponesInCuponesAdapter(cupon)
+        })
+
+        setUpListClick()
+    }
+
+    fun setUpListClick(){
+        mainViewModel?.getCuponSelected()?.observe(this, Observer {cupon ->
+            val intent = Intent (this, DetailActivity::class.java)
+            intent.putExtra("cupon", cupon)
+            startActivity(intent)
         })
     }
 }
